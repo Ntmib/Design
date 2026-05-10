@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Файл Карпати · Презентация для трансляции</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --parchment: #F5E6D0;
+  --parchment-dark: #E8D5B8;
+  --parchment-darker: #DDC9A8;
+  --terracotta: #E8762B;
+  --terracotta-light: #F09040;
+  --terracotta-dark: #C45F1A;
+  --graphite: #1E1E1E;
+  --graphite-light: #2D2D2D;
+  --graphite-soft: #3A3A3A;
+  --white: #FFFFFF;
+  --text-dark: #1A1A1A;
+  --text-muted: #6B5B4B;
+  --pain: #C84B3A;
+  --win: #7A8C3A;
+  --gold: #B8841A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar { display: none; }
+
+body {
+  background: var(--parchment);
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(232,118,43,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(30,30,30,0.03) 0%, transparent 50%);
+}
+
+/* ========== СЛАЙД ========== */
+.slide {
+  min-height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.slide-inner {
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Метка слайда вверху */
+.slide-tag {
+  position: absolute;
+  top: 32px;
+  left: 60px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--terracotta);
+  opacity: 0.85;
+}
+
+/* Тёмные слайды (цитаты, финал) */
+.slide.dark {
+  background: var(--graphite);
+  color: var(--white);
+}
+.slide.dark .slide-tag { color: var(--terracotta-light); }
+
+/* Терракотовый слайд (акцент) */
+.slide.accent {
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+  color: var(--white);
+}
+.slide.accent .slide-tag { color: rgba(255,255,255,0.9); }
+
+/* ========== ТИТУЛЬНЫЙ СЛАЙД ========== */
+.hero-num {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 16rem;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--terracotta);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.hero-num-suffix {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--graphite);
+  text-align: center;
+  margin-bottom: 50px;
+}
+.hero-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 4.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--graphite);
+  text-align: center;
+  line-height: 1.05;
+}
+.hero-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 20px;
+}
+.hero-pixel-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: var(--terracotta);
+  letter-spacing: 4px;
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 2px solid var(--terracotta);
+  display: inline-block;
+  align-self: center;
+}
+
+/* ========== ЗАГОЛОВКИ СЛАЙДОВ ========== */
+.slide-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--graphite);
+  text-align: center;
+}
+.slide.dark .slide-title { color: var(--white); }
+.slide.accent .slide-title { color: var(--white); }
+
+.slide-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+.slide.dark .slide-subtitle { color: rgba(255,255,255,0.7); }
+
+/* ========== БУЛЛИТЫ ========== */
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+.bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px 28px;
+  background: var(--white);
+  border-radius: 14px;
+  border-left: 6px solid var(--terracotta);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+.bullet-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: var(--terracotta);
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  background: rgba(232,118,43,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.bullet-text {
+  color: var(--graphite);
+  font-weight: 500;
+}
+.bullet-text strong { color: var(--terracotta-dark); font-weight: 700; }
+
+/* ========== ЦИТАТА КАРПАТИ ========== */
+.karpathy-card {
+  background: var(--graphite);
+  color: var(--white);
+  padding: 60px 70px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.karpathy-card::before {
+  content: '«';
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  font-family: 'Oswald', serif;
+  font-size: 12rem;
+  line-height: 1;
+  color: var(--terracotta);
+  opacity: 0.4;
+}
+.karpathy-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--terracotta-light);
+  margin-bottom: 24px;
+}
+.karpathy-text {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1.3;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+.karpathy-author {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.6);
+  text-align: right;
+  margin-top: 30px;
+  letter-spacing: 0.5px;
+}
+
+/* ========== БОЛЬШИЕ ЦИФРЫ ПРИНЦИПОВ ========== */
+.principle-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.principle-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8rem;
+  color: var(--terracotta);
+  line-height: 1;
+}
+.principle-name {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--graphite);
+  text-align: center;
+  line-height: 1;
+}
+.principle-tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Карточка-формулировка принципа */
+.principle-card {
+  background: rgba(232,118,43,0.08);
+  border: 3px solid var(--terracotta);
+  padding: 40px 50px;
+  border-radius: 18px;
+  max-width: 1100px;
+  margin: 30px auto 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: var(--graphite);
+  font-weight: 500;
+  position: relative;
+}
+.principle-card::before {
+  content: '📝 ЗАПОМНИ';
+  position: absolute;
+  top: -16px;
+  left: 30px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  background: var(--terracotta);
+  color: var(--white);
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+/* ========== КЕЙСЫ EXAMPLES ========== */
+.case-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.case-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--terracotta);
+  margin-bottom: 12px;
+}
+.case-name {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  color: var(--graphite);
+  text-transform: uppercase;
+}
+.case-prompt {
+  background: var(--graphite);
+  color: var(--white);
+  padding: 24px 32px;
+  border-radius: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  text-align: center;
+  margin: 20px auto 30px;
+  max-width: 900px;
+  line-height: 1.4;
+}
+.case-prompt::before { content: '👤 Промт зрителя: '; color: var(--terracotta); }
+
+.case-vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+.case-side {
+  background: var(--white);
+  padding: 32px 36px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.case-side.bad { border-top: 6px solid var(--pain); }
+.case-side.good { border-top: 6px solid var(--win); }
+.case-side-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.case-side.bad .case-side-label { color: var(--pain); }
+.case-side.good .case-side-label { color: var(--win); }
+.case-side-headline {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--graphite);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.case-side-text {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--graphite);
+}
+.case-side-text strong { color: var(--terracotta-dark); }
+.case-side .code-inline {
+  background: var(--parchment-dark);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--graphite);
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* ========== ИНСАЙТ-ПЛАШКА ========== */
+.insight {
+  background: linear-gradient(135deg, var(--gold) 0%, #D49A2A 100%);
+  color: var(--white);
+  padding: 30px 40px;
+  border-radius: 14px;
+  max-width: 1100px;
+  margin: 30px auto 0;
+  box-shadow: 0 6px 20px rgba(184,132,26,0.3);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.insight-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.insight-text {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 1.7rem;
+  line-height: 1.35;
+  font-style: italic;
+}
+
+/* ========== ТЕРМИНАЛ С КОМАНДАМИ ========== */
+.terminal {
+  background: var(--graphite);
+  border-radius: 14px;
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.terminal-bar {
+  background: var(--graphite-light);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.terminal-dots { display: flex; gap: 8px; }
+.terminal-dot { width: 13px; height: 13px; border-radius: 50%; }
+.terminal-dot.r { background: #FF5F57; }
+.terminal-dot.y { background: #FFBD2E; }
+.terminal-dot.g { background: #28CA41; }
+.terminal-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #8A8275;
+  letter-spacing: 0.5px;
+}
+.terminal-body {
+  padding: 30px 36px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: var(--white);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.terminal-body .prompt-sym { color: var(--terracotta); }
+.terminal-body .cmd { color: var(--terracotta); font-weight: 700; }
+.terminal-body .arg { color: #B8E0FF; }
+.terminal-body .dim { color: #888; }
+.terminal-body .green { color: #7AC17A; }
+
+/* ========== СПОСОБЫ УСТАНОВКИ ========== */
+.method-card {
+  background: var(--white);
+  padding: 40px 50px;
+  border-radius: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border-left: 8px solid var(--terracotta);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.method-card.green { border-left-color: var(--win); }
+.method-card.yellow { border-left-color: var(--gold); }
+.method-card.red { border-left-color: var(--pain); }
+
+.method-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--terracotta);
+}
+.method-card.green .method-num { color: var(--win); }
+.method-card.yellow .method-num { color: var(--gold); }
+.method-card.red .method-num { color: var(--pain); }
+
+.method-name {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  color: var(--graphite);
+  line-height: 1.05;
+}
+.method-desc {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--graphite);
+}
+.method-when {
+  background: var(--parchment);
+  padding: 18px 24px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: var(--graphite);
+  margin-top: 10px;
+}
+.method-when strong {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--terracotta);
+  letter-spacing: 1.5px;
+}
+
+/* ========== СРАВНИТЕЛЬНАЯ ТАБЛИЦА ========== */
+.compare-table {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+}
+.compare-table th {
+  background: var(--graphite);
+  color: var(--white);
+  padding: 24px 28px;
+  text-align: left;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.compare-table td {
+  padding: 22px 28px;
+  font-size: 1.4rem;
+  border-top: 1px solid var(--parchment-darker);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+}
+.compare-table td.label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: var(--graphite);
+}
+.compare-table td.bad { color: var(--pain); }
+.compare-table td.good { color: var(--win); font-weight: 700; }
+.compare-table td.neutral { color: var(--graphite); }
+
+/* ========== БАГИ ========== */
+.bugs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+.bug-card {
+  background: var(--white);
+  padding: 28px 32px;
+  border-radius: 14px;
+  border-left: 6px solid var(--pain);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.bug-num {
+  background: var(--pain);
+  color: var(--white);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.bug-text {
+  font-size: 1.3rem;
+  color: var(--graphite);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ========== ФИНАЛЬНАЯ ЦИТАТА ========== */
+.final-quote-card {
+  text-align: center;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.final-quote-marks {
+  font-family: 'Oswald', serif;
+  font-size: 14rem;
+  color: var(--terracotta);
+  line-height: 0.5;
+  margin-bottom: 30px;
+  opacity: 0.7;
+}
+.final-quote-text {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 4.5rem;
+  line-height: 1.2;
+  font-style: italic;
+  color: var(--white);
+  letter-spacing: 0.005em;
+}
+.final-quote-attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 40px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ========== CTA / ЛИД-МАГНИТ ========== */
+.gift-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+.gift-item {
+  background: rgba(255,255,255,0.95);
+  padding: 30px 36px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.gift-icon {
+  width: 70px;
+  height: 70px;
+  background: var(--terracotta);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 2rem;
+  color: var(--white);
+}
+.gift-content { flex: 1; }
+.gift-name {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-bottom: 4px;
+}
+.gift-desc {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.gift-cta {
+  background: var(--graphite);
+  color: var(--white);
+  padding: 36px 48px;
+  border-radius: 18px;
+  text-align: center;
+  margin-top: 40px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.gift-cta-headline {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.gift-cta-sub {
+  font-size: 1.4rem;
+  opacity: 0.85;
+}
+.gift-cta-sub strong { color: var(--terracotta-light); }
+
+/* ========== ПРОГРЕСС-БАР И НАВИГАЦИЯ ========== */
+.progress-track {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: rgba(30,30,30,0.08);
+  z-index: 100;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--terracotta) 0%, var(--terracotta-light) 100%);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.slide-counter {
+  position: fixed;
+  bottom: 24px;
+  right: 32px;
+  background: var(--graphite);
+  color: var(--white);
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.slide-counter .current { color: var(--terracotta-light); }
+
+.nav-arrows {
+  position: fixed;
+  bottom: 24px;
+  left: 32px;
+  display: flex;
+  gap: 12px;
+  z-index: 100;
+}
+.nav-btn {
+  background: var(--graphite);
+  color: var(--white);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: transform 0.15s, background 0.15s;
+}
+.nav-btn:hover { background: var(--terracotta); transform: scale(1.08); }
+.nav-btn:active { transform: scale(0.95); }
+
+/* Большие тексты при адаптации */
+@media (max-width: 1200px) {
+  .hero-num { font-size: 12rem; }
+  .slide-title { font-size: 4rem; }
+  .karpathy-text { font-size: 2.4rem; }
+  .principle-num { font-size: 6rem; }
+  .principle-name { font-size: 4.5rem; }
+  .case-vs { grid-template-columns: 1fr; }
+  .bugs { grid-template-columns: 1fr; }
+  .final-quote-text { font-size: 3.2rem; }
+}
+
+@media (max-width: 768px) {
+  .slide { padding: 60px 24px; }
+  .hero-num { font-size: 8rem; }
+  .hero-title { font-size: 2.4rem; }
+  .slide-title { font-size: 2.6rem; }
+  .karpathy-text { font-size: 1.6rem; }
+  .principle-num { font-size: 4rem; }
+  .principle-name { font-size: 3rem; }
+  .method-name { font-size: 2.2rem; }
+  .terminal-body { font-size: 0.95rem; padding: 20px; }
+  .compare-table th, .compare-table td { padding: 14px 16px; font-size: 1rem; }
+}
+
+/* ========== UTILITY-КЛАССЫ ========== */
+.text-center { text-align: center; }
+.mt-30 { margin-top: 30px; }
+.mt-40 { margin-top: 40px; }
+.bullets-narrow { max-width: 1100px; }
+.method-when-wide { max-width: 1100px; margin: 0 auto; }
+.hero-num-xl { font-size: 14rem; }
+
+/* Цитата на полную ширину с тёмным градиентом */
+.karpathy-card.gradient-dark { background: linear-gradient(135deg, var(--graphite) 0%, var(--graphite-light) 100%); }
+.accent-light { color: var(--terracotta-light); }
+
+/* Тёмная инсайт-плашка для тёмных слайдов */
+.insight.on-dark { margin-top: 40px; background: rgba(255,255,255,0.08); }
+.insight.on-dark .insight-icon { color: var(--terracotta-light); }
+.insight.on-dark .insight-text { color: var(--white); }
+
+/* Цветные буллиты на акцентном слайде */
+.bullet.on-accent { background: rgba(255,255,255,0.95); }
+.bullet.on-accent.green { border-left-color: var(--win); }
+.bullet.on-accent.green .bullet-num { background: rgba(122,140,58,0.15); color: var(--win); }
+.bullet.on-accent.green .bullet-text strong { color: var(--win); }
+.bullet.on-accent.gold { border-left-color: var(--gold); }
+.bullet.on-accent.gold .bullet-num { background: rgba(184,132,26,0.15); color: var(--gold); }
+.bullet.on-accent.gold .bullet-text strong { color: var(--gold); }
+.bullet.on-accent.red { border-left-color: var(--pain); }
+.bullet.on-accent.red .bullet-num { background: rgba(200,75,58,0.15); color: var(--pain); }
+.bullet.on-accent.red .bullet-text strong { color: var(--pain); }
+
+/* Главный вывод — заголовок шире */
+.slide-title.xl-headline { color: var(--white); font-size: 6rem; line-height: 1; }
+.slide-subtitle.xl-sub { color: rgba(255,255,255,0.95); font-size: 2.4rem; font-weight: 600; max-width: 1200px; }
+.conclusion-card {
+  background: rgba(255,255,255,0.95);
+  padding: 40px 50px;
+  border-radius: 18px;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: var(--graphite);
+}
+.conclusion-card strong {
+  color: var(--terracotta);
+  font-size: 2rem;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* Подсветка в финальной цитате */
+.final-quote-text .highlight { color: var(--terracotta-light); }
+.slide-title.on-accent { color: var(--white); }
+.slide-subtitle.on-accent { color: rgba(255,255,255,0.9); }
+</style>
+</head>
+<body>
+
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- ============================== СЛАЙД 1: ТИТУЛ ============================== -->
+<section class="slide" data-slide="1">
+  <div class="slide-tag">@NEUROBUSSINES</div>
+  <div class="slide-inner text-center">
+    <div class="hero-num">43.000</div>
+    <div class="hero-num-suffix">установок за неделю</div>
+    <div class="hero-title">Один файл, который<br>меняет Claude Code</div>
+    <div class="hero-subtitle">4 принципа от Андрея Карпати</div>
+    <div class="hero-pixel-tag">CLAUDE.MD · 65 СТРОК</div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 2: КАРПАТИ ============================== -->
+<section class="slide" data-slide="2">
+  <div class="slide-tag">02 · АВТОР</div>
+  <div class="slide-inner">
+    <div class="slide-title">Андрей Карпати</div>
+    <div class="slide-subtitle">Один из основателей OpenAI · Бывший глава AI в Tesla<br>Опубликовал твит про 4 ошибки агентов · Разработчик Форест собрал из этого CLAUDE.md</div>
+    <div class="bullets mt-30">
+      <div class="bullet">
+        <div class="bullet-num">01</div>
+        <div class="bullet-text">Был среди тех, кто запускал <strong>OpenAI</strong> — те самые ребята, что сделали ChatGPT</div>
+      </div>
+      <div class="bullet">
+        <div class="bullet-num">02</div>
+        <div class="bullet-text">До этого <strong>возглавлял AI в Tesla</strong> — весь автопилот его рук дело</div>
+      </div>
+      <div class="bullet">
+        <div class="bullet-num">03</div>
+        <div class="bullet-text">В одном твите вычислил <strong>4 главные ошибки</strong>, которые делают все агенты — и Claude, и ChatGPT, и Gemini</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 3: ПЛАН ============================== -->
+<section class="slide" data-slide="3">
+  <div class="slide-tag">03 · ПЛАН РОЛИКА</div>
+  <div class="slide-inner">
+    <div class="slide-title">Сегодня три вещи</div>
+    <div class="bullets">
+      <div class="bullet">
+        <div class="bullet-num">01</div>
+        <div class="bullet-text"><strong>4 принципа Карпати</strong> — на конкретных примерах кода до и после</div>
+      </div>
+      <div class="bullet">
+        <div class="bullet-num">02</div>
+        <div class="bullet-text"><strong>3 способа установки</strong> — какой когда выбирать, чтобы не сломать своё</div>
+      </div>
+      <div class="bullet">
+        <div class="bullet-num">03</div>
+        <div class="bullet-text"><strong>Параллельный тест</strong> — реальный лендинг, один промт, два запуска</div>
+      </div>
+    </div>
+    <div class="insight">
+      <div class="insight-icon">💡</div>
+      <div class="insight-text">Эти принципы работают в любом агенте. Не только в Claude. Покажу даже в Cursor.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 4: ФАЙЛ ============================== -->
+<section class="slide" data-slide="4">
+  <div class="slide-tag">04 · РЕПОЗИТОРИЙ</div>
+  <div class="slide-inner text-center">
+    <div class="hero-num hero-num-xl">65</div>
+    <div class="hero-num-suffix">строк меняют поведение Claude</div>
+    <div class="bullets bullets-narrow">
+      <div class="bullet">
+        <div class="bullet-num">📄</div>
+        <div class="bullet-text"><strong>CLAUDE.md</strong> — 65 строк концентрированной мысли. Меньше одного экрана</div>
+      </div>
+      <div class="bullet">
+        <div class="bullet-num">📚</div>
+        <div class="bullet-text"><strong>EXAMPLES.md</strong> — 522 строки реальных кейсов до и после кода</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 5: ПРИНЦИП 1 ============================== -->
+<section class="slide" data-slide="5">
+  <div class="slide-tag">ПРИНЦИП 01</div>
+  <div class="slide-inner">
+    <div class="principle-hero">
+      <div class="principle-num">01</div>
+      <div class="principle-name">Думать перед<br>кодом</div>
+      <div class="principle-tagline">Claude по умолчанию НЕ думает. Он сразу делает.<br>Этот принцип возвращает ему паузу.</div>
+    </div>
+    <div class="principle-card">
+      <strong>Сначала думай, потом пиши.</strong><br>
+      Несколько интерпретаций → выбор → план → код.<br>
+      Не согласен — возражай. Не знаешь — спрашивай.
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 6: ЦИТАТА КАРПАТИ 1 ============================== -->
+<section class="slide dark" data-slide="6">
+  <div class="slide-tag">ЦИТАТА АВТОРА</div>
+  <div class="slide-inner">
+    <div class="karpathy-card">
+      <div class="karpathy-label">★ ANDREJ KARPATHY · TWITTER</div>
+      <div class="karpathy-text">LLM делают неправильные предположения за тебя и просто катятся с ними дальше без проверки. Не управляют своим непониманием, не уточняют, не подсвечивают противоречия.</div>
+      <div class="karpathy-author">— ОСНОВАТЕЛЬ OPENAI · ЭКС-ГЛАВА AI В TESLA</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 7: КЕЙС 1 ============================== -->
+<section class="slide" data-slide="7">
+  <div class="slide-tag">КЕЙС ИЗ EXAMPLES.MD · HIDDEN ASSUMPTIONS</div>
+  <div class="slide-inner">
+    <div class="case-title">
+      <div class="case-tag">🔍 РЕАЛЬНЫЙ ПРИМЕР</div>
+      <div class="case-name">Скрытые предположения</div>
+    </div>
+    <div class="case-prompt">сделай мне фичу для экспорта данных юзеров</div>
+    <div class="case-vs">
+      <div class="case-side bad">
+        <div class="case-side-label">❌ ЧТО ДЕЛАЕТ CLAUDE</div>
+        <div class="case-side-headline">30 строк функции</div>
+        <div class="case-side-text">с тремя <strong>скрытыми выборами</strong>:</div>
+        <div class="case-side-text">→ за тебя решил, что экспорт всех юзеров</div>
+        <div class="case-side-text">→ за тебя решил, какие поля</div>
+        <div class="case-side-text">→ за тебя решил формат — JSON или CSV</div>
+      </div>
+      <div class="case-side good">
+        <div class="case-side-label">✅ ЧТО ДОЛЖНО БЫТЬ</div>
+        <div class="case-side-headline">4 вопроса перед кодом</div>
+        <div class="case-side-text">→ всех или фильтр?</div>
+        <div class="case-side-text">→ файл, API или email?</div>
+        <div class="case-side-text">→ какие поля — там же могут быть приватные?</div>
+        <div class="case-side-text">→ какой объём — 10 или 10 миллионов?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 8: ПРИНЦИП 2 ============================== -->
+<section class="slide" data-slide="8">
+  <div class="slide-tag">ПРИНЦИП 02</div>
+  <div class="slide-inner">
+    <div class="principle-hero">
+      <div class="principle-num">02</div>
+      <div class="principle-name">Простота<br>прежде всего</div>
+      <div class="principle-tagline">Claude любит усложнять. Это его профессиональная болезнь.<br>Этот принцип лечит.</div>
+    </div>
+    <div class="principle-card">
+      <strong>Делай ровно то, что попросили.</strong><br>
+      Без лишних абстракций. Без обработки невозможных сценариев.<br>
+      50 строк лучше 200, если делают то же самое.
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 9: ЦИТАТА КАРПАТИ 2 ============================== -->
+<section class="slide dark" data-slide="9">
+  <div class="slide-tag">ЦИТАТА АВТОРА</div>
+  <div class="slide-inner">
+    <div class="karpathy-card">
+      <div class="karpathy-label">★ ANDREJ KARPATHY · TWITTER</div>
+      <div class="karpathy-text">Они любят переусложнять код и API, раздувать абстракции, не чистят мёртвый код… городят тысячу строк там, где хватило бы ста.</div>
+      <div class="karpathy-author">— ОСНОВАТЕЛЬ OPENAI · ЭКС-ГЛАВА AI В TESLA</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 10: КЕЙС 2 ============================== -->
+<section class="slide" data-slide="10">
+  <div class="slide-tag">КЕЙС ИЗ EXAMPLES.MD · OVER-ABSTRACTION</div>
+  <div class="slide-inner">
+    <div class="case-title">
+      <div class="case-tag">🔍 САМЫЙ ПОКАЗАТЕЛЬНЫЙ КЕЙС</div>
+      <div class="case-name">Из 50 строк → в 2</div>
+    </div>
+    <div class="case-prompt">добавь функцию расчёта скидки</div>
+    <div class="case-vs">
+      <div class="case-side bad">
+        <div class="case-side-label">❌ ЧТО ДЕЛАЕТ CLAUDE</div>
+        <div class="case-side-headline">50 строк инженерии</div>
+        <div class="case-side-text">→ Strategy pattern</div>
+        <div class="case-side-text">→ абстрактный класс DiscountStrategy</div>
+        <div class="case-side-text">→ два наследника</div>
+        <div class="case-side-text">→ dataclass-конфиг</div>
+        <div class="case-side-text">→ отдельный калькулятор-обёртка</div>
+        <div class="case-side-text">+ ещё 30 строк настройки чтобы это использовать</div>
+      </div>
+      <div class="case-side good">
+        <div class="case-side-label">✅ ЧТО ДОЛЖНО БЫТЬ</div>
+        <div class="case-side-headline">2 строки. Одна функция.</div>
+        <div class="case-side-text">Делает ровно то же самое.</div>
+        <div class="code-inline">def calculate_discount(amount, percent):<br>&nbsp;&nbsp;&nbsp;&nbsp;return amount * percent / 100</div>
+      </div>
+    </div>
+    <div class="insight">
+      <div class="insight-icon">⚡</div>
+      <div class="insight-text">Из пятидесяти строк инженерии вышли две. Это твой будний день, если ты с Claude этот принцип не закрепил.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 11: ПРИНЦИП 3 ============================== -->
+<section class="slide" data-slide="11">
+  <div class="slide-tag">ПРИНЦИП 03</div>
+  <div class="slide-inner">
+    <div class="principle-hero">
+      <div class="principle-num">03</div>
+      <div class="principle-name">Хирургия,<br>не ремонт</div>
+      <div class="principle-tagline">Самая частая боль фрилансера. Просишь поправить одну штуку —<br>через два промта сломались две фичи, которые работали.</div>
+    </div>
+    <div class="principle-card">
+      <strong>Меняй только то, что просили.</strong><br>
+      Рабочее не трогай. Никаких бонусных улучшений.<br>
+      Каждая изменённая строка должна вести напрямую к запросу.
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 12: КЕЙС 3 ============================== -->
+<section class="slide" data-slide="12">
+  <div class="slide-tag">КЕЙС ИЗ EXAMPLES.MD · DRIVE-BY REFACTORING</div>
+  <div class="slide-inner">
+    <div class="case-title">
+      <div class="case-tag">🔍 БОЛЬ ФРИЛАНСЕРА В КАДРЕ</div>
+      <div class="case-name">25 строк диффа vs 3</div>
+    </div>
+    <div class="case-prompt">исправь баг, при пустом email валидатор падает</div>
+    <div class="case-vs">
+      <div class="case-side bad">
+        <div class="case-side-label">❌ ЧТО ДЕЛАЕТ CLAUDE</div>
+        <div class="case-side-headline">25 строк красно-зелёного</div>
+        <div class="case-side-text">→ правит баг</div>
+        <div class="case-side-text">→ заодно усиливает валидацию email</div>
+        <div class="case-side-text">→ добавляет проверку длины username</div>
+        <div class="case-side-text">→ добавляет alphanum для username</div>
+        <div class="case-side-text">→ лепит docstring сверху</div>
+        <div class="case-side-text">→ переписывает комментарии под себя</div>
+      </div>
+      <div class="case-side good">
+        <div class="case-side-label">✅ ЧТО ДОЛЖНО БЫТЬ</div>
+        <div class="case-side-headline">3 строки. Точно по запросу.</div>
+        <div class="case-side-text">Правит ровно три строки про обработку пустого email.</div>
+        <div class="case-side-text">→ Username не трогает</div>
+        <div class="case-side-text">→ Docstring не лепит</div>
+        <div class="case-side-text">→ Комментарии оставляет в покое</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 13: ПРИНЦИП 4 ============================== -->
+<section class="slide" data-slide="13">
+  <div class="slide-tag">ПРИНЦИП 04</div>
+  <div class="slide-inner">
+    <div class="principle-hero">
+      <div class="principle-num">04</div>
+      <div class="principle-name">Цикл<br>до цели</div>
+      <div class="principle-tagline">Самый сильный из четырёх. Превращает Claude<br>из исполнителя в напарника.</div>
+    </div>
+    <div class="principle-card">
+      <strong>Шаг → проверка → сравнение с целью.</strong><br>
+      Не сошлось — следующая итерация. Пока не сделано.<br>
+      Дай критерий успеха — и смотри как агент бежит.
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 14: ГЛАВНАЯ ЦИТАТА КАРПАТИ ============================== -->
+<section class="slide dark" data-slide="14">
+  <div class="slide-tag">ГЛАВНАЯ ЦИТАТА ИЗ ТВИТА</div>
+  <div class="slide-inner">
+    <div class="karpathy-card gradient-dark">
+      <div class="karpathy-label">★ КЛЮЧЕВАЯ МЫСЛЬ КАРПАТИ</div>
+      <div class="karpathy-text">LLM исключительно хороши в зацикливании до заданной цели… <strong class="accent-light">Не говори ему ЧТО делать. Дай критерий успеха и смотри как он бежит.</strong></div>
+      <div class="karpathy-author">— ANDREJ KARPATHY</div>
+    </div>
+    <div class="insight on-dark">
+      <div class="insight-icon">⚡</div>
+      <div class="insight-text">Не инструкция, а измеримая цель. Это смена парадигмы.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 15: КЕЙС 4 ============================== -->
+<section class="slide" data-slide="15">
+  <div class="slide-tag">КЕЙС ИЗ EXAMPLES.MD · VAGUE VS VERIFIABLE</div>
+  <div class="slide-inner">
+    <div class="case-title">
+      <div class="case-tag">🔍 РАСПЛЫВЧАТО vs ПРОВЕРЯЕМО</div>
+      <div class="case-name">Цикл с проверками</div>
+    </div>
+    <div class="case-prompt">исправь систему авторизации</div>
+    <div class="case-vs">
+      <div class="case-side bad">
+        <div class="case-side-label">❌ РАСПЛЫВЧАТО</div>
+        <div class="case-side-headline">Без критериев</div>
+        <div class="case-side-text">«Я просмотрю код, найду проблемы, сделаю улучшения, протестирую».</div>
+        <div class="case-side-text">→ что считать «улучшением»?</div>
+        <div class="case-side-text">→ что считать «протестировано»?</div>
+        <div class="case-side-text">→ Лезет в код вслепую → через час сюрприз</div>
+      </div>
+      <div class="case-side good">
+        <div class="case-side-label">✅ ПРОВЕРЯЕМО</div>
+        <div class="case-side-headline">Каждый шаг с критерием</div>
+        <div class="case-side-text">→ Напиши тест: смена пароля инвалидирует сессию</div>
+        <div class="case-side-text">→ Проверь — тест падает (баг есть)</div>
+        <div class="case-side-text">→ Реализуй фикс</div>
+        <div class="case-side-text">→ Проверь — тест проходит</div>
+        <div class="case-side-text">→ Остальные auth-тесты не сломались</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 16: УСТАНОВКА — ВСТУПЛЕНИЕ ============================== -->
+<section class="slide accent" data-slide="16">
+  <div class="slide-tag">УСТАНОВКА</div>
+  <div class="slide-inner text-center">
+    <div class="slide-title on-accent">3 способа поставить файл</div>
+    <div class="slide-subtitle on-accent">У автора репо — два официальных. Третий придумал я — для тех,<br>у кого свой CLAUDE.md уже наработан годами.</div>
+    <div class="bullets bullets-narrow">
+      <div class="bullet on-accent green">
+        <div class="bullet-num">🟢</div>
+        <div class="bullet-text">Через <strong>плагин Claude Code</strong> — нативно, не трогает CLAUDE.md</div>
+      </div>
+      <div class="bullet on-accent gold">
+        <div class="bullet-num">🟡</div>
+        <div class="bullet-text">Через <strong>curl</strong> — для нового проекта без CLAUDE.md</div>
+      </div>
+      <div class="bullet on-accent red">
+        <div class="bullet-num">🔴</div>
+        <div class="bullet-text">Через <strong>расширенный промт встраивания</strong> — поверх существующего CLAUDE.md</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 17: СПОСОБ 1 ПЛАГИН ============================== -->
+<section class="slide" data-slide="17">
+  <div class="slide-tag">СПОСОБ 01 · НАТИВНО</div>
+  <div class="slide-inner">
+    <div class="method-card green">
+      <div class="method-num">🟢 СПОСОБ 01</div>
+      <div class="method-name">Через плагин Claude Code</div>
+      <div class="method-desc">Самый чистый. Не трогает ни одного твоего файла. Принципы Карпати начинают работать на ВСЕХ твоих проектах разом.</div>
+    </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="terminal-dots"><div class="terminal-dot r"></div><div class="terminal-dot y"></div><div class="terminal-dot g"></div></div>
+        <div class="terminal-title">claude code</div>
+      </div>
+      <div class="terminal-body"><span class="cmd">/plugin marketplace add</span> <span class="arg">forrestchang/andrej-karpathy-skills</span>
+<span class="cmd">/plugin install</span> <span class="arg">andrej-karpathy-skills@karpathy-skills</span>
+<span class="dim"># 5 секунд — и плагин стоит на всех проектах</span>
+<span class="green">✓ done</span></div>
+    </div>
+    <div class="method-when method-when-wide">
+      <strong>КОГДА БРАТЬ</strong>
+      Если хочешь, чтобы принципы работали везде по умолчанию. Настроил один раз и забыл.
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 18: СПОСОБ 2 CURL ============================== -->
+<section class="slide" data-slide="18">
+  <div class="slide-tag">СПОСОБ 02 · CURL</div>
+  <div class="slide-inner">
+    <div class="method-card yellow">
+      <div class="method-num">🟡 СПОСОБ 02</div>
+      <div class="method-name">Curl на CLAUDE.md</div>
+      <div class="method-desc">Официальный способ из README. Подходит когда у тебя ГОЛЫЙ проект, в нём ещё нет своего CLAUDE.md.</div>
+    </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="terminal-dots"><div class="terminal-dot r"></div><div class="terminal-dot y"></div><div class="terminal-dot g"></div></div>
+        <div class="terminal-title">terminal · ~/your-project</div>
+      </div>
+      <div class="terminal-body"><span class="prompt-sym">$</span> <span class="cmd">curl -o</span> CLAUDE.md \
+<span class="arg">https://raw.githubusercontent.com/forrestchang/</span>\
+<span class="arg">andrej-karpathy-skills/main/CLAUDE.md</span>
+<span class="green">✓ Файл скачан в корень проекта</span></div>
+    </div>
+    <div class="method-when method-when-wide">
+      <strong>КОГДА БРАТЬ</strong>
+      Только что создал проект, CLAUDE.md ещё пустой. Базовое поведение Карпати в этом проекте.
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 19: СПОСОБ 3 ПРОМТ ============================== -->
+<section class="slide" data-slide="19">
+  <div class="slide-tag">СПОСОБ 03 · РАСШИРЕННЫЙ ПРОМТ</div>
+  <div class="slide-inner">
+    <div class="method-card red">
+      <div class="method-num">🔴 СПОСОБ 03</div>
+      <div class="method-name">Промт встраивания</div>
+      <div class="method-desc">Аккуратное наложение поверх существующего CLAUDE.md. Не затирает наработки, не дублирует то, что уже есть. Сначала показывает план — ты подтверждаешь — потом меняет.</div>
+    </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="terminal-dots"><div class="terminal-dot r"></div><div class="terminal-dot y"></div><div class="terminal-dot g"></div></div>
+        <div class="terminal-title">встраивание-карпати.txt</div>
+      </div>
+      <div class="terminal-body"><span class="cmd">Прочитай мой текущий CLAUDE.md.</span>
+Найди разделы, куда логично встроить 4 принципа Карпати:
+  1. Думать перед кодом
+  2. Простота прежде всего
+  3. Хирургические изменения
+  4. Цикл до цели
+
+Встрой их так, чтобы сохранить мою структуру и стиль.
+Не дублируй то, что у меня уже есть.
+<span class="dim"># Сначала покажи план встраивания. Потом меняй.</span></div>
+    </div>
+    <div class="method-when method-when-wide">
+      <strong>КОГДА БРАТЬ</strong>
+      У тебя уже есть свой CLAUDE.md с правилами проекта и наработками. Нужно встроить новые принципы аккуратно.
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 20: СРАВНЕНИЕ УСТАНОВОК ============================== -->
+<section class="slide" data-slide="20">
+  <div class="slide-tag">СРАВНЕНИЕ ТРЁХ СПОСОБОВ</div>
+  <div class="slide-inner">
+    <div class="slide-title">Какой способ когда</div>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Параметр</th><th>🟢 Плагин</th><th>🟡 Curl</th><th>🔴 Промт встраивания</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Скорость</td>
+          <td class="good">5 сек</td>
+          <td class="good">2 сек</td>
+          <td class="neutral">30 сек</td>
+        </tr>
+        <tr>
+          <td class="label">CLAUDE.md</td>
+          <td class="good">не трогает</td>
+          <td class="bad">перезапишет</td>
+          <td class="good">встроит аккуратно</td>
+        </tr>
+        <tr>
+          <td class="label">Область</td>
+          <td class="neutral">все проекты</td>
+          <td class="neutral">один проект</td>
+          <td class="neutral">один проект</td>
+        </tr>
+        <tr>
+          <td class="label">Когда брать</td>
+          <td>по умолчанию</td>
+          <td>новый проект</td>
+          <td>уже накоплен свой</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 21: ТЕСТ ПОСТАНОВКА ============================== -->
+<section class="slide" data-slide="21">
+  <div class="slide-tag">ПАРАЛЛЕЛЬНЫЙ ТЕСТ</div>
+  <div class="slide-inner">
+    <div class="slide-title">Реальный лендинг с 4 багами</div>
+    <div class="slide-subtitle">Один и тот же промт. Две копии лендинга. С файлом — и без файла.<br>Замеряем баги, время и токены.</div>
+    <div class="bugs">
+      <div class="bug-card">
+        <div class="bug-num">01</div>
+        <div class="bug-text">На мобильном hero выезжает за экран — горизонтальный скролл</div>
+      </div>
+      <div class="bug-card">
+        <div class="bug-num">02</div>
+        <div class="bug-text">Форма заявки не отправляется — кнопка нажимается, запрос не уходит</div>
+      </div>
+      <div class="bug-card">
+        <div class="bug-num">03</div>
+        <div class="bug-text">Hover на кнопках дёргается, анимация скачет</div>
+      </div>
+      <div class="bug-card">
+        <div class="bug-num">04</div>
+        <div class="bug-text">Секции на странице разной высоты — без визуального ритма</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 22: РЕЗУЛЬТАТ ТЕСТА ============================== -->
+<section class="slide" data-slide="22">
+  <div class="slide-tag">РЕЗУЛЬТАТ ТЕСТА</div>
+  <div class="slide-inner">
+    <div class="slide-title">Один файл — другая разница</div>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Метрика</th><th>❌ БЕЗ файла</th><th>✅ С файлом</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Багов исправлено</td>
+          <td class="bad">2 из 4</td>
+          <td class="good">4 из 4</td>
+        </tr>
+        <tr>
+          <td class="label">Лишних правок в чужом коде</td>
+          <td class="bad">3 файла</td>
+          <td class="good">0</td>
+        </tr>
+        <tr>
+          <td class="label">Время</td>
+          <td class="bad">8 минут</td>
+          <td class="good">5 минут</td>
+        </tr>
+        <tr>
+          <td class="label">Токенов потрачено</td>
+          <td class="bad">12% лимита</td>
+          <td class="good">6% лимита</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insight">
+      <div class="insight-icon">🎯</div>
+      <div class="insight-text">Меньше токенов. Быстрее. Не ломает рабочее. Делает ровно то, что попросили.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 23: CURSOR ============================== -->
+<section class="slide" data-slide="23">
+  <div class="slide-tag">БОНУС · УНИВЕРСАЛЬНОСТЬ</div>
+  <div class="slide-inner">
+    <div class="slide-title">Те же принципы — в Cursor</div>
+    <div class="slide-subtitle">В том же репозитории лежит файл <strong>.cursor/rules/karpathy-guidelines.mdc</strong><br>Один репозиторий. Два инструмента. Одинаковое поведение.</div>
+    <div class="insight">
+      <div class="insight-icon">🌍</div>
+      <div class="insight-text">Принципы — это не фишка Claude. Это инженерная база. Как держать молоток — без разницы какой марки.</div>
+    </div>
+    <div class="bullets mt-30">
+      <div class="bullet">
+        <div class="bullet-num">📦</div>
+        <div class="bullet-text"><strong>Claude Code</strong> — CLAUDE.md или плагин</div>
+      </div>
+      <div class="bullet">
+        <div class="bullet-num">📦</div>
+        <div class="bullet-text"><strong>Cursor</strong> — .cursor/rules/karpathy-guidelines.mdc</div>
+      </div>
+      <div class="bullet">
+        <div class="bullet-num">📦</div>
+        <div class="bullet-text"><strong>ChatGPT, Gemini, свой агент</strong> — те же принципы в системный промт</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 24: ГЛАВНЫЙ ВЫВОД ============================== -->
+<section class="slide accent" data-slide="24">
+  <div class="slide-tag">ГЛАВНЫЙ ВЫВОД</div>
+  <div class="slide-inner text-center">
+    <div class="slide-title xl-headline">Это и есть тот навык</div>
+    <div class="slide-subtitle xl-sub">который сейчас отделяет крепкого фрилансера от новичка</div>
+    <div class="conclusion-card">
+      Не количество промтов в копилке.<br>
+      <strong>А то, что ты понимаешь как мыслит агент — и умеешь его настроить.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 25: ФИНАЛЬНАЯ ЦИТАТА ============================== -->
+<section class="slide dark" data-slide="25">
+  <div class="slide-tag">ФИЛОСОФИЯ КАРПАТИ</div>
+  <div class="slide-inner">
+    <div class="final-quote-card">
+      <div class="final-quote-marks">«</div>
+      <div class="final-quote-text">Хороший код — тот,<br>что решает сегодняшнюю задачу <strong class="highlight">просто</strong>,<br>а не завтрашнюю — преждевременно.</div>
+      <div class="final-quote-attr">★ ИЗ EXAMPLES.MD · ANDREJ KARPATHY GUIDELINES</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== СЛАЙД 26: ЛИД-МАГНИТ ============================== -->
+<section class="slide" data-slide="26">
+  <div class="slide-tag">ПОДАРКИ В TELEGRAM</div>
+  <div class="slide-inner">
+    <div class="slide-title">Забирай в @neurobussines</div>
+    <div class="gift-list">
+      <div class="gift-item">
+        <div class="gift-icon">📁</div>
+        <div class="gift-content">
+          <div class="gift-name">Полный репозиторий</div>
+          <div class="gift-desc">Все файлы и кейсы EXAMPLES.md, к которым мы сегодня обращались</div>
+        </div>
+      </div>
+      <div class="gift-item">
+        <div class="gift-icon">📋</div>
+        <div class="gift-content">
+          <div class="gift-name">Инструкция по 3 способам установки</div>
+          <div class="gift-desc">Какой когда выбирать, команды, что делать если что-то пошло не так</div>
+        </div>
+      </div>
+      <div class="gift-item">
+        <div class="gift-icon">📝</div>
+        <div class="gift-content">
+          <div class="gift-name">Шпаргалка по 4 принципам</div>
+          <div class="gift-desc">Одностраничная. Распечатать, держать перед монитором</div>
+        </div>
+      </div>
+    </div>
+    <div class="gift-cta">
+      <div class="gift-cta-headline">Ссылка в описании · Бесплатно</div>
+      <div class="gift-cta-sub">Подписывайся, чтобы не пропустить <strong>фишку про скиллы Claude Code</strong> в следующем ролике</div>
+    </div>
+  </div>
+</section>
+
+<div class="slide-counter"><span class="current" id="currentNum">01</span> / <span id="totalNum">26</span></div>
+
+<div class="nav-arrows">
+  <button class="nav-btn" id="prevBtn" type="button" aria-label="Назад">←</button>
+  <button class="nav-btn" id="nextBtn" type="button" aria-label="Вперёд">→</button>
+</div>
+
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.slide')];
+  const total = slides.length;
+  const progressFill = document.getElementById('progressFill');
+  const currentNumEl = document.getElementById('currentNum');
+  const totalNumEl = document.getElementById('totalNum');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  totalNumEl.textContent = String(total).padStart(2, '0');
+
+  function getCurrentIndex() {
+    const scrollY = window.scrollY;
+    const winH = window.innerHeight;
+    let idx = 0;
+    for (let i = 0; i < slides.length; i++) {
+      if (slides[i].offsetTop <= scrollY + winH * 0.5) idx = i;
+    }
+    return idx;
+  }
+
+  function updateUI() {
+    const idx = getCurrentIndex();
+    const pct = ((idx + 1) / total) * 100;
+    progressFill.style.width = pct + '%';
+    currentNumEl.textContent = String(idx + 1).padStart(2, '0');
+  }
+
+  function goToSlide(idx) {
+    if (idx < 0 || idx >= total) return;
+    slides[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  prevBtn.addEventListener('click', () => goToSlide(getCurrentIndex() - 1));
+  nextBtn.addEventListener('click', () => goToSlide(getCurrentIndex() + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    const k = e.key.toLowerCase();
+    if (k === 'arrowright' || k === 'arrowdown' || k === ' ' || k === 'pagedown') {
+      e.preventDefault();
+      goToSlide(getCurrentIndex() + 1);
+    } else if (k === 'arrowleft' || k === 'arrowup' || k === 'pageup') {
+      e.preventDefault();
+      goToSlide(getCurrentIndex() - 1);
+    } else if (k === 'home') {
+      e.preventDefault();
+      goToSlide(0);
+    } else if (k === 'end') {
+      e.preventDefault();
+      goToSlide(total - 1);
+    } else if (k === 'f' || k === 'а') {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  });
+
+  let scrollRAF = null;
+  window.addEventListener('scroll', () => {
+    if (scrollRAF) return;
+    scrollRAF = requestAnimationFrame(() => {
+      updateUI();
+      scrollRAF = null;
+    });
+  }, { passive: true });
+
+  updateUI();
+})();
+</script>
+
+</body>
+</html>
